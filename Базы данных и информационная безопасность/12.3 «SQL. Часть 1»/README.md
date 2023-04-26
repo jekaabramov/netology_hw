@@ -6,15 +6,7 @@ SELECT DISTINCT district
 FROM address
 WHERE district LIKE 'K%a' AND district NOT LIKE '% %';
 
-district |
----------+
-Kanagawa |
-Kalmykia |
-Kaduna   |
-Karnataka|
-Kütahya  |
-Kerala   |
-Kitaa    |
+![](https://github.com/jekaabramov/netology_hw/blob/master/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/12.3%20%C2%ABSQL.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%C2%BB/img/1.jpg)
 
 ### Задание 2
 
@@ -23,15 +15,7 @@ FROM payment
 WHERE payment_date BETWEEN '2005-06-15' AND '2005-06-19'
   AND amount > 10.00;
 
-CAST(payment_date AS DATE)|
---------------------------+
-                2005-06-15|
-                2005-06-15|
-                2005-06-16|
-                2005-06-17|
-                2005-06-17|
-                2005-06-17|
-                2005-06-18|
+![](https://github.com/jekaabramov/netology_hw/blob/master/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/12.3%20%C2%ABSQL.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%C2%BB/img/2.jpg)
 
 ### Задание 3
 
@@ -40,13 +24,7 @@ FROM rental
 ORDER BY rental_date DESC
 LIMIT 5;
 
-rental_id|rental_date        |inventory_id|customer_id|return_date|staff_id|last_update        |
----------+-------------------+------------+-----------+-----------+--------+-------------------+
-    11739|2006-02-14 15:16:03|        4568|        373|           |       2|2006-02-15 21:30:53|
-    14616|2006-02-14 15:16:03|        4537|        532|           |       1|2006-02-15 21:30:53|
-    11676|2006-02-14 15:16:03|        4496|        216|           |       2|2006-02-15 21:30:53|
-    15966|2006-02-14 15:16:03|        4472|        374|           |       1|2006-02-15 21:30:53|
-    13486|2006-02-14 15:16:03|        4460|        274|           |       1|2006-02-15 21:30:53|
+![](https://github.com/jekaabramov/netology_hw/blob/master/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/12.3%20%C2%ABSQL.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%C2%BB/img/3.jpg)
 
 ### Задание 4
 
@@ -58,12 +36,7 @@ FROM customer
 WHERE active = 1
   AND (first_name = 'Kelly' OR first_name = 'Willie');
 
-first_name|last_name|active|
-----------+---------+------+
-keppy     |torres   |     1|
-wippie    |howell   |     1|
-wippie    |markham  |     1|
-keppy     |knott    |     1|
+![](https://github.com/jekaabramov/netology_hw/blob/master/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/12.3%20%C2%ABSQL.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%C2%BB/img/4.jpg)
 
 ### Задание 5
 
@@ -72,19 +45,7 @@ SELECT
     SUBSTRING_INDEX(email, '@', -1) AS email_domain
 FROM customer;
 
-email_username       |email_domain      |
----------------------+------------------+
-MARY.SMITH           |sakilacustomer.org|
-PATRICIA.JOHNSON     |sakilacustomer.org|
-LINDA.WILLIAMS       |sakilacustomer.org|
-BARBARA.JONES        |sakilacustomer.org|
-ELIZABETH.BROWN      |sakilacustomer.org|
-JENNIFER.DAVIS       |sakilacustomer.org|
-MARIA.MILLER         |sakilacustomer.org|
-SUSAN.WILSON         |sakilacustomer.org|
-MARGARET.MOORE       |sakilacustomer.org|
-DOROTHY.TAYLOR       |sakilacustomer.org|
-.....................|..................|
+![](https://github.com/jekaabramov/netology_hw/blob/master/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/12.3%20%C2%ABSQL.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%C2%BB/img/5.jpg)
 
 ### Задание 6
 
@@ -95,14 +56,4 @@ SELECT
     LCASE(SUBSTRING(TRIM(SUBSTRING_INDEX(email, '@', -1)), 2)), '') AS email_domain
 FROM customer;
 
-email_username     |email_domain      |
--------------------+------------------+
-Mmary.smith        |Sakilacustomer.org|
-Ppatricia.johnson  |Sakilacustomer.org|
-Llinda.williams    |Sakilacustomer.org|
-Bbarbara.jones     |Sakilacustomer.org|
-Eelizabeth.brown   |Sakilacustomer.org|
-Jjennifer.davis    |Sakilacustomer.org|
-Mmaria.miller      |Sakilacustomer.org|
-Ssusan.wilson      |Sakilacustomer.org|
-...................|..................|
+![](https://github.com/jekaabramov/netology_hw/blob/master/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/12.3%20%C2%ABSQL.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%C2%BB/img/6.jpg)
