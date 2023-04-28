@@ -10,10 +10,10 @@ WHERE district LIKE 'K%a' AND district NOT LIKE '% %';
 
 ### Задание 2
 
-SELECT CAST(payment_date AS DATE)
+SELECT amount, payment_date
 FROM payment
-WHERE payment_date BETWEEN '2005-06-15' AND '2005-06-19'
-  AND amount > 10.00;
+WHERE CAST(payment_date AS DATE) BETWEEN '2005-06-15' AND '2005-06-18' 
+	AND amount > 10.00;
 
 ![](https://github.com/jekaabramov/netology_hw/blob/master/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/12.3%20%C2%ABSQL.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%201%C2%BB/img/2.jpg)
 
