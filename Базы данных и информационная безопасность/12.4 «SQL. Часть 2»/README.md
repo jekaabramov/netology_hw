@@ -17,7 +17,7 @@ GROUP BY
 HAVING 
     COUNT(customer.customer_id) > 300;
     
-![]()
+![](https://github.com/jekaabramov/netology_hw/blob/master/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/12.4%20%C2%ABSQL.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%202%C2%BB/img/1.bmp)
 
 ### Задание 2
 
@@ -25,7 +25,7 @@ SELECT COUNT(*)
 FROM film 
 WHERE length > (SELECT AVG(length) FROM film);
 
-![]()
+![](https://github.com/jekaabramov/netology_hw/blob/master/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/12.4%20%C2%ABSQL.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%202%C2%BB/img/2.bmp)
 
 ### Задание 3
 
@@ -38,4 +38,4 @@ GROUP BY month
 ORDER BY total_payments DESC 
 LIMIT 1;
 
-![]()
+![](https://github.com/jekaabramov/netology_hw/blob/master/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/12.4%20%C2%ABSQL.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%202%C2%BB/img/3.bmp)
