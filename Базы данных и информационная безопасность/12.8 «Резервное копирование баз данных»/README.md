@@ -18,14 +18,14 @@
 
 ### Задание 2
 
-Команды pg_dump и pg_restore используются в PostgreSQL для резервного копирования и восстановления базы данных соответственно:
+Команды ```pg_dump``` и ```pg_restore``` используются в PostgreSQL для резервного копирования и восстановления базы данных соответственно:
 
-pg_dump -U myuser -d mydatabase -f backup.sql
+```pg_dump -U myuser -d mydatabase -f backup.sql```
 
-pg_restore -U myuser -d mydatabase backup.sql
+```pg_restore -U myuser -d mydatabase backup.sql```
 
 ### Задание 3
 
-Для инкрементного резервного копирования базы данных MySQL можно использовать утилиту mysqldump с опцией --single-transaction:
+Для инкрементного резервного копирования базы данных MySQL можно использовать утилиту mysqldump с опцией ```--single-transaction```:
 
-mysqldump --single-transaction --user=myuser --password=mypassword --databases mydatabase > backup.sql
+```mysqldump --single-transaction --user=myuser --password=mypassword --databases mydatabase > backup.sql```
