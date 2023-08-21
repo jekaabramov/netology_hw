@@ -3,7 +3,7 @@
 ### Задание 1
 
 mysql> status
---------------
+
 mysql  Ver 8.1.0 for Linux on x86_64 (MySQL Community Server - GPL)
 
 Connection id:          21
@@ -29,11 +29,11 @@ Threads: 2  Questions: 132  Slow queries: 0  Opens: 192  Flush tables: 3  Open t
 
 
 mysql> SELECT COUNT(*) FROM orders WHERE price > 300;
-+----------+
+
 | COUNT(*) |
-+----------+
+|:---------|
 |        1 |
-+----------+
+
 1 row in set (0.01 sec)
 
 ### Задание 2
