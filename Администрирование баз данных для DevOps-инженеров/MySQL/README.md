@@ -69,7 +69,7 @@ Max_data_length: 0
  Create_options:
         Comment:
 1 row in set (0.01 sec)
-```
+
 
 SET profiling = 1;
 ALTER TABLE test_db.orders ENGINE = MyISAM;
@@ -84,7 +84,7 @@ mysql> SHOW PROFILES;
 |        4 | 0.03926175 | ALTER TABLE test_db.orders ENGINE = InnoDB |
 
 4 rows in set, 1 warning (0.00 sec)
-
+```
 ### Задание 4
 
 # Remove leading # and set to the amount of RAM for the most important data
