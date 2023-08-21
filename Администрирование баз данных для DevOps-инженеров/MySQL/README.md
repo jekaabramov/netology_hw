@@ -48,7 +48,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test' AND 
 
 ### Задание 3
 
-mysql> SHOW TABLE STATUS\G  
+`mysql> SHOW TABLE STATUS\G  
 
          Name: orders  
          Engine: InnoDB  
@@ -68,7 +68,7 @@ Max_data_length: 0
        Checksum: NULL
  Create_options:
         Comment:
-1 row in set (0.01 sec)
+1 row in set (0.01 sec)`
 
 
 SET profiling = 1;
@@ -89,7 +89,7 @@ mysql> SHOW PROFILES;
 
 # Remove leading # and set to the amount of RAM for the most important data
 # cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
-innodb_buffer_pool_size = 70%  # Set to use 70% of available RAM for buffer pool
+innodb_buffer_pool_size = 70%   # Set to use 70% of available RAM for buffer pool
 innodb_io_capacity = 10000      # Adjust the I/O capacity for InnoDB
 
 # Enable compression for InnoDB tables
