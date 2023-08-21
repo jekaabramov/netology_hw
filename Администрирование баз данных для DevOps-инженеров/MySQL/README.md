@@ -49,7 +49,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test' AND 
 ### Задание 3
 
 mysql> SHOW TABLE STATUS\G  
-------
+
          Name: orders  
          Engine: InnoDB  
         Version: 10  
@@ -75,14 +75,14 @@ SET profiling = 1;
 ALTER TABLE test_db.orders ENGINE = MyISAM;
 ALTER TABLE test_db.orders ENGINE = InnoDB;
 mysql> SHOW PROFILES;
-+----------+------------+--------------------------------------------+
+
 | Query_ID | Duration   | Query                                      |
-+----------+------------+--------------------------------------------+
+|:---------|:-----------|:-------------------------------------------|
 |        1 | 0.02609950 | SHOW TABLE STATUS                          |
 |        2 | 0.00013350 | SET profiling = 1                          |
 |        3 | 0.07141950 | ALTER TABLE test_db.orders ENGINE = MyISAM |
 |        4 | 0.03926175 | ALTER TABLE test_db.orders ENGINE = InnoDB |
-+----------+------------+--------------------------------------------+
+
 4 rows in set, 1 warning (0.00 sec)
 
 ### Задание 4
