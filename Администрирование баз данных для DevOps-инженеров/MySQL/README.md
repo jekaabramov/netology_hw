@@ -48,27 +48,26 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test' AND 
 
 ### Задание 3
 
-mysql> SHOW TABLE STATUS\G \
-
-           Name: orders \
-         Engine: InnoDB \
-        Version: 10 \
-     Row_format: Dynamic \
-           Rows: 5 \
- Avg_row_length: 3276 \
-    Data_length: 16384 \
-Max_data_length: 0 \
-   Index_length: 0 \
-      Data_free: 0 \
- Auto_increment: 6 \
-    Create_time: 2023-08-21 13:19:42 \
-    Update_time: 2023-08-21 13:19:42 \
-     Check_time: NULL \
-      Collation: utf8mb4_0900_ai_ci \
-       Checksum: NULL \
- Create_options: \
-        Comment: \
-1 row in set (0.01 sec)
+``mysql> SHOW TABLE STATUS\G \
+         Name: orders
+         Engine: InnoDB
+        Version: 10
+     Row_format: Dynamic
+           Rows: 5
+ Avg_row_length: 3276
+    Data_length: 16384
+Max_data_length: 0
+   Index_length: 0
+      Data_free: 0
+ Auto_increment: 6
+    Create_time: 2023-08-21 13:19:42
+    Update_time: 2023-08-21 13:19:42
+     Check_time: NULL
+      Collation: utf8mb4_0900_ai_ci
+       Checksum: NULL
+ Create_options:
+        Comment:
+1 row in set (0.01 sec)``
 
 
 SET profiling = 1;
