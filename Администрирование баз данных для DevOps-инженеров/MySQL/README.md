@@ -39,11 +39,11 @@ mysql> SELECT COUNT(*) FROM orders WHERE price > 300;
 ### Задание 2
 
 mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test' AND HOST = 'localhost';
-+------+-----------+------------------------------------------------+
+
 | USER | HOST      | ATTRIBUTE                                      |
-+------+-----------+------------------------------------------------+
+|:------|:-----------|:-----------------------------------------------|
 | test | localhost | {"LAST_NAME": "Pretty", "FIRST_NAME": "James"} |
-+------+-----------+------------------------------------------------+
+
 1 row in set (0.00 sec)
 
 ### Задание 3
