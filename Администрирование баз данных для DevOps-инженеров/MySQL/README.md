@@ -48,7 +48,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test' AND 
 
 ### Задание 3
 
-`mysql> SHOW TABLE STATUS\G  
+`mysql> SHOW TABLE STATUS\G`
 
          Name: orders  
          Engine: InnoDB  
