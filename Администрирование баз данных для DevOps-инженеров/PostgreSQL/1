@@ -1,0 +1,13 @@
+
+
+
+docker run -d \
+  --name psql13 \
+  -e POSTGRES_PASSWORD=2310615 \
+  -e POSTGRES_USER=psql \
+  -e POSTGRES_DB=second \
+  -v postgres_data:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  postgres:13
+
+docker exec -it psql13 psql -U psql -d second
