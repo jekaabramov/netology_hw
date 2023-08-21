@@ -86,22 +86,13 @@ mysql> SHOW PROFILES;
 ```
 ### Задание 4
 ```
-# Remove leading # and set to the amount of RAM for the most important data
-# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
-innodb_buffer_pool_size = 70%   # Set to use 70% of available RAM for buffer pool
-innodb_io_capacity = 10000      # Adjust the I/O capacity for InnoDB
-
-# Enable compression for InnoDB tables
+innodb_buffer_pool_size = 70%   
+innodb_io_capacity = 10000      
 innodb_compression_algorithm = zlib
 innodb_compression_level = 6
-
-# Set the size of the buffer for uncommitted transactions to 1 MB
 innodb_log_buffer_size = 1M
+innodb_buffer_pool_size = 30%  l
 
-# Set the cache size for the InnoDB buffer pool to 30% of available RAM
-innodb_buffer_pool_size = 30%  # Set to use 30% of available RAM for buffer pool
-
-# Set the size of the binary log files to 100 MB
 log_bin = /var/log/mysql/mysql-bin.log
 max_binlog_size = 100M
 
