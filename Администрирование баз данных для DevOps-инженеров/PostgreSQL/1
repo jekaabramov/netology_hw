@@ -2,12 +2,52 @@
 
 
 docker run -d \
-  --name psql13 \
+  --name psql-13 \
   -e POSTGRES_PASSWORD=2310615 \
   -e POSTGRES_USER=psql \
-  -e POSTGRES_DB=second \
-  -v postgres_data:/var/lib/postgresql/data \
+  -e POSTGRES_DB=test_database \
+  -v postgres_data:home/vagrant/psql/data \
   -p 5432:5432 \
   postgres:13
 
-docker exec -it psql13 psql -U psql -d second
+docker exec -it psql-13 psql -U psql -d test_database
+
+docker exec -i psql-13 pg_restore -U psql -d test_database < /home/vagrant/psql/test_dump.sql
+
+
+docker cp test_dump.sql psql-13:/test_dump.sql
+
+docker exec -it psql13 psql -U postgresql -d test_database
+
+docker exec -it psql13 psql -U postgresql
+docker exec -i psql13 psql -U postgresql -d test_database < test_dump.sql
+
+SELECT attname, avg_width
+FROM pg_stats
+WHERE schemaname = 'public' AND tablename = 'orders'
+ORDER BY avg_width DESC
+LIMIT 1;
+
+BEGIN;
+
+-- Создание новых таблиц orders_1 и orders_2
+CREATE TABLE orders_1 (LIKE orders INCLUDING ALL) PARTITION BY RANGE (price);
+
+CREATE TABLE orders_2 (LIKE orders INCLUDING ALL) PARTITION BY RANGE (price);
+
+-- Создание партиций для каждой новой таблицы
+-- Перенос данных в соответствующие партиции
+-- Для orders_1, где price > 499
+CREATE TABLE orders_1_partition_1 PARTITION OF orders_1 FOR VALUES FROM (500) TO (MAXVALUE);
+
+-- Для orders_2, где price <= 499
+CREATE TABLE orders_2_partition_1 PARTITION OF orders_2 FOR VALUES FROM (MINVALUE) TO (499);
+
+-- Удаление изначальной таблицы orders
+DROP TABLE orders;
+
+-- Переименование новых таблиц на orders
+ALTER TABLE orders_1 RENAME TO orders;
+ALTER TABLE orders_2 RENAME TO orders;
+
+COMMIT;
