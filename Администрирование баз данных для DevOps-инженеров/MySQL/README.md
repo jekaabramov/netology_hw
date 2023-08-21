@@ -1,7 +1,7 @@
 # Типы и структура СУБД - Абрамов Евгений
 
 ### Задание 1
-
+```
 mysql> status
 
 mysql  Ver 8.1.0 for Linux on x86_64 (MySQL Community Server - GPL)
@@ -25,27 +25,26 @@ Binary data as:         Hexadecimal
 Uptime:                 42 min 13 sec
 
 Threads: 2  Questions: 132  Slow queries: 0  Opens: 192  Flush tables: 3  Open tables: 110  Queries per second avg: 0.052
-
-
-
+```
+```
 mysql> SELECT COUNT(*) FROM orders WHERE price > 300;
-
++----------+
 | COUNT(*) |
-|:---------|
++----------+
 |        1 |
-
++----------+
 1 row in set (0.01 sec)
-
+```
 ### Задание 2
-
+```
 mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test' AND HOST = 'localhost';
-
++------+-----------+------------------------------------------------+
 | USER | HOST      | ATTRIBUTE                                      |
-|:------|:-----------|:-----------------------------------------------|
++------+-----------+------------------------------------------------+
 | test | localhost | {"LAST_NAME": "Pretty", "FIRST_NAME": "James"} |
-
++------+-----------+------------------------------------------------+
 1 row in set (0.00 sec)
-
+```
 ### Задание 3
 ```
 mysql> SHOW TABLE STATUS\G
@@ -69,24 +68,24 @@ Max_data_length: 0
  Create_options:
         Comment:
 1 row in set (0.01 sec)
-
-
+```
+```
 SET profiling = 1;
 ALTER TABLE test_db.orders ENGINE = MyISAM;
 ALTER TABLE test_db.orders ENGINE = InnoDB;
 mysql> SHOW PROFILES;
-
++----------+------------+--------------------------------------------+
 | Query_ID | Duration   | Query                                      |
-|:---------|:-----------|:-------------------------------------------|
++----------+------------+--------------------------------------------+
 |        1 | 0.02609950 | SHOW TABLE STATUS                          |
 |        2 | 0.00013350 | SET profiling = 1                          |
 |        3 | 0.07141950 | ALTER TABLE test_db.orders ENGINE = MyISAM |
 |        4 | 0.03926175 | ALTER TABLE test_db.orders ENGINE = InnoDB |
-
++----------+------------+--------------------------------------------+
 4 rows in set, 1 warning (0.00 sec)
 ```
 ### Задание 4
-
+```
 # Remove leading # and set to the amount of RAM for the most important data
 # cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
 innodb_buffer_pool_size = 70%   # Set to use 70% of available RAM for buffer pool
@@ -118,3 +117,4 @@ pid-file=/var/run/mysqld/mysqld.pid
 socket=/var/run/mysqld/mysqld.sock
 
 !includedir /etc/mysql/conf.d/
+```
