@@ -49,7 +49,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test' AND 
 ### Задание 3
 
 mysql> SHOW TABLE STATUS\G
-*************************** 1. row ***************************
+
            Name: orders
          Engine: InnoDB
         Version: 10
