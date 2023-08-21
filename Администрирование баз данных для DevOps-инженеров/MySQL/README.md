@@ -47,8 +47,8 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test' AND 
 1 row in set (0.00 sec)
 
 ### Задание 3
-
-`mysql> SHOW TABLE STATUS\G`
+\```
+mysql> SHOW TABLE STATUS\G
 
          Name: orders  
          Engine: InnoDB  
@@ -68,8 +68,8 @@ Max_data_length: 0
        Checksum: NULL
  Create_options:
         Comment:
-1 row in set (0.01 sec)`
-
+1 row in set (0.01 sec)
+\```
 
 SET profiling = 1;
 ALTER TABLE test_db.orders ENGINE = MyISAM;
