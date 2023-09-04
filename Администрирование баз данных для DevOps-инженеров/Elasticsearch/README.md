@@ -34,6 +34,7 @@ USER elastic
 # Открытие порта 9200 для доступа к Elasticsearch
 EXPOSE 9200
 ```
+#### Docker Hub
 ```
 root@node1:~/elasticsearch# curl http://localhost:9200/
 {
