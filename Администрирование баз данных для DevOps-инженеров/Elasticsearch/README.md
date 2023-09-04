@@ -88,7 +88,7 @@ root@node1:~/elasticsearch# curl -X GET -u undefined:$ESPASS "localhost:9200/_cl
 
 Часть индексов и кластер находятся в состоянии "yellow", потому что Elasticsearch требует, чтобы хотя бы один реплицированный шард для каждого индекса был доступен для обеспечения высокой доступности данных.
 
-##### Удалите все индексы
+#### Удалите все индексы
 ```
 root@node1:~/elasticsearch# curl -X GET "localhost:9200/_cat/indices" | awk '{print $3}' | xargs -I {} curl -X DELETE "localhost:9200/{}"
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
