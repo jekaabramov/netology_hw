@@ -55,7 +55,29 @@ root@node1:~/elasticsearch# curl http://localhost:9200/
 }
 ```
 ### Задание 2
+#### Добавьте в elasticsearch 3 индекса:
+```
+curl -X PUT "localhost:9200/ind-1" -H "Content-Type: application/json" -d '{
+  "settings": {
+    "number_of_replicas": 0,
+    "number_of_shards": 1
+  }
+}'
 
+curl -X PUT "localhost:9200/ind-2" -H "Content-Type: application/json" -d '{
+  "settings": {
+    "number_of_replicas": 1,
+    "number_of_shards": 2
+  }
+}'
+
+curl -X PUT "localhost:9200/ind-3" -H "Content-Type: application/json" -d '{
+  "settings": {
+    "number_of_replicas": 2,
+    "number_of_shards": 4
+  }
+}'
+```
 #### Получите список индексов и их статусов:
 ```
 root@node1:~/elasticsearch# curl -X GET "localhost:9200/_cat/indices?v"
