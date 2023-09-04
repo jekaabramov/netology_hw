@@ -35,6 +35,7 @@ USER elastic
 EXPOSE 9200
 ```
 #### Docker Hub
+https://hub.docker.com/r/evgeniyabramov/elasticsearch-8.9
 ```
 root@node1:~/elasticsearch# curl http://localhost:9200/
 {
