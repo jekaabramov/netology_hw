@@ -2,7 +2,7 @@
 
 ### Задание 1
 
-##### Dockerfile
+#### Dockerfile
 ```
 # Используем базовый образ CentOS 7
 FROM centos:7
@@ -26,6 +26,7 @@ RUN useradd -MU elastic && \
     chown -R elastic:elastic elasticsearch-8.9.1 && \
     mkdir /var/lib/elastic && \
     chown -R elastic:elastic /var/lib/elastic
+
 
 # Переключение на пользователя elasticsearch
 USER elastic
@@ -55,7 +56,7 @@ root@node1:~/elasticsearch# curl http://localhost:9200/
 ```
 ### Задание 2
 
-##### Получите список индексов и их статусов:
+#### Получите список индексов и их статусов:
 ```
 root@node1:~/elasticsearch# curl -X GET "localhost:9200/_cat/indices?v"
 health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
@@ -63,7 +64,7 @@ green  open   ind-1 g23TbcQrRm2bMbe221Ht3A   1   0          0            0      
 yellow open   ind-3 ZmoVM5PURju2OLqwsJt_LA   4   2          0            0       900b           900b
 yellow open   ind-2 sjjCduTVTY-GC_PgJTeREA   2   1          0            0       450b           450b
 ```
-##### Получите состояние кластера Elasticsearch, используя API.
+#### Получите состояние кластера Elasticsearch, используя API.
 ```
 root@node1:~/elasticsearch# curl -X GET -u undefined:$ESPASS "localhost:9200/_cluster/health?pretty"
 {
@@ -84,7 +85,7 @@ root@node1:~/elasticsearch# curl -X GET -u undefined:$ESPASS "localhost:9200/_cl
   "active_shards_percent_as_number" : 41.17647058823529
 }
 ```
-##### Как вы думаете, почему часть индексов и кластер находятся в состоянии yellow?
+#### Как вы думаете, почему часть индексов и кластер находятся в состоянии yellow?
 
 Часть индексов и кластер находятся в состоянии "yellow", потому что Elasticsearch требует, чтобы хотя бы один реплицированный шард для каждого индекса был доступен для обеспечения высокой доступности данных.
 
@@ -100,6 +101,56 @@ root@node1:~/elasticsearch# curl -X GET "localhost:9200/_cat/indices" | awk '{pr
 ```
 ### Задание 3
 
-
-
-### Задание 4
+#### Используя API, зарегистрируйте эту директорию как snapshot repository c именем netology_backup.
+```
+root@node1:~/elasticsearch# curl -X PUT -u undefined:$ESPASS "localhost:9200/_snapshot/netology_backup?pretty" -H 'Content-Type: application/json' -d'
+{
+  "type": "fs",
+  "settings": {
+    "location": "snapshots"
+  }
+}'
+{
+  "acknowledged" : true
+}
+```
+#### Создайте индекс test с 0 реплик и 1 шардом и приведите в ответе список индексов.
+```
+root@node1:~/elasticsearch# curl -X GET "localhost:9200/_cat/indices?v"
+health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   test  ZVDipuCkTCCcTcYcd3OIyg   1   0          0            0       225b           225b
+```
+#### Создайте snapshot состояния кластера Elasticsearch.
+```
+bash-4.2$ cd snapshots/
+bash-4.2$ ls -la
+total 48
+drwxr-xr-x 3 elastic elastic  4096 Sep  4 07:53 .
+drwxr-xr-x 1 elastic elastic  4096 Sep  4 07:49 ..
+-rw-r--r-- 1 elastic elastic   587 Sep  4 07:53 index-0
+-rw-r--r-- 1 elastic elastic     8 Sep  4 07:53 index.latest
+drwxr-xr-x 3 elastic elastic  4096 Sep  4 07:53 indices
+-rw-r--r-- 1 elastic elastic 21300 Sep  4 07:53 meta-qGlwyKJ4Q7GwUIAy3Qp2FA.dat
+-rw-r--r-- 1 elastic elastic   303 Sep  4 07:53 snap-qGlwyKJ4Q7GwUIAy3Qp2FA.dat
+```
+#### Удалите индекс test и создайте индекс test-2.
+```
+root@node1:~/elasticsearch# curl -X GET "localhost:9200/_cat/indices?v"
+health status index  uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   test-2 FtxgM99XT8C9zWeY6-TX2Q   1   0          0            0       225b           225b
+```
+#### Восстановите состояние кластера Elasticsearch из snapshot, созданного ранее.
+```
+curl -X POST "localhost:9200/_snapshot/netology_backup/my_snapshot/_restore" -H 'Content-Type: application/json' -d'
+{
+  "indices": "test",
+  "ignore_unavailable": true,
+  "include_global_state": false
+}'
+```
+```
+root@node1:~/elasticsearch# curl -X GET "localhost:9200/_cat/indices?v"
+health status index  uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   test-2 FtxgM99XT8C9zWeY6-TX2Q   1   0          0            0       247b           247b
+green  open   test   jyuU9E25TRSBZHjrPyVL9g   1   0          0            0       247b           247b
+```
