@@ -65,19 +65,30 @@ Ansible выгодно отличается от других систем уп�
 ### Задание 3
 
 ```
-PS C:\Program Files\Oracle\VirtualBox> .\VBoxManage.exe --version
-7.0.10r158379
+abramov@abramov:~$ vboxmanage --version
+6.1.38_Ubuntur153438
 ```
 ```
-PS C:\Program Files\Oracle\VirtualBox> vagrant --version
-Vagrant 2.3.7
+abramov@abramov:~$ vagrant --version
+Vagrant 2.2.19
 ```
 ```
-PS C:\Users\sks_1\OneDrive\Рабочий стол\Netology\config> terraform --version
+abramov@abramov:~$ terraform --version
 Terraform v1.5.7
-on windows_amd64
+on linux_amd64
 ```
-
+```
+abramov@abramov:~$ ansible --version
+ansible [core 2.15.4]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/abramov/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /home/abramov/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0] (/usr/bin/python3)
+  jinja version = 3.0.3
+  libyaml = True
+```
 
 ### Задание 4
 
