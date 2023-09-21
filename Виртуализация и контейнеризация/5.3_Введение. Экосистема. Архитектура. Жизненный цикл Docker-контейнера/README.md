@@ -42,8 +42,29 @@
 
 ### Задание 3
 
+- #### Запустите первый контейнер из образа centos c любым тегом в фоновом режиме, подключив папку /data из текущей рабочей директории на хостовой машине в /data контейнера.
+- #### Подключитесь к первому контейнеру с помощью docker exec и создайте текстовый файл любого содержания в /data.
 
-
-
-### Задание 4
-
+``` 
+vagrant@server1:~$ docker run -it -v $(pwd)/data:/data --name centos centos:latest
+[root@db65157c4d80 /]# echo "First file in centos" > /data/first_file.txt 
+```
+- #### Добавьте ещё один файл в папку /data на хостовой машине.
+```
+vagrant@server1:~$ echo "Second file in host" > ./data/second.txt
+```
+- #### Запустите второй контейнер из образа debian в фоновом режиме, подключив папку /data из текущей рабочей директории на хостовой машине в /data контейнера.
+- #### Подключитесь во второй контейнер и отобразите листинг и содержание файлов в /data контейнера.
+```
+vagrant@server1:~$ docker run -it -v $(pwd)/data:/data --name debian debian:latest
+root@4cf36a6a5c6e:/# ls -la data/
+total 16
+drwxr-xr-x 2 1000 1000 4096 Sep 21 10:54 .
+drwxr-xr-x 1 root root 4096 Sep 21 10:53 ..
+-rw-r--r-- 1 root root   21 Sep 21 10:53 first_file.txt
+-rw-r--r-- 1 1000 1000   20 Sep 21 10:38 second.txt
+root@4cf36a6a5c6e:/# cat data/first_file.txt 
+First file in centos
+root@4cf36a6a5c6e:/# cat data/second.txt        
+Second file in host
+```
