@@ -1,9 +1,9 @@
 # 5.3 «Введение. Экосистема. Архитектура. Жизненный цикл Docker-контейнера» - Абрамов Евгений
 
 ### Задача 1
-```
-https://hub.docker.com/r/evgeniyabramov/nginx_test_netology
-```
+
+<https://hub.docker.com/r/evgeniyabramov/nginx_test_netology>
+
 ### Задание 2
 
 
