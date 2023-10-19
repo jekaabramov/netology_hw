@@ -47,7 +47,6 @@ resource "docker_container" "nginx_container" {
 }
 
 ```
-
 ```
 root@node1:/home/vagrant/ter-homeworks/01/src# docker ps
 CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS          PORTS                  NAMES
