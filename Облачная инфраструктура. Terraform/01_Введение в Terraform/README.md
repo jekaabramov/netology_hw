@@ -30,7 +30,7 @@
    ```
 
    Имя ресурса `docker_container` начинается с цифры ("1nginx"), что не допускается согласно синтаксису Terraform. Имена ресурсов должны начинаться с буквы или подчеркивания и могут содержать только буквы, цифры, подчеркивания и тире.
-5. ```hcl
+5. ```
 resource "docker_image" "nginx_image" {
   name         = "nginx:latest"
   keep_locally = true
@@ -48,7 +48,7 @@ resource "docker_container" "nginx_container" {
 
 ```
 
-```hcl
+```
 root@node1:/home/vagrant/ter-homeworks/01/src# docker ps
 CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS          PORTS                  NAMES
 9253caddbbe3   bc649bab30d1   "/docker-entrypoint.…"   About a minute ago   Up 59 seconds   0.0.0.0:8000->80/tcp   example_cXoS0gVjNHRPp0Ir
