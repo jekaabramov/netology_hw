@@ -14,8 +14,8 @@
 2. Согласно файлу .gitignore, допустимо сохранять личную и секретную информацию в файле personal.auto.tfvars.
 
 3. 
-Ключ: bcrypt_hash
-Значение: $2a$10$EihxvK9.YGfavGJmyu.gxOXau/YZtZgpJg1hKHx32jFMEfg0pj8we
+- Ключ: bcrypt_hash
+- Значение: $2a$10$EihxvK9.YGfavGJmyu.gxOXau/YZtZgpJg1hKHx32jFMEfg0pj8we
 
 4. Ошибки в выводе `terraform validate`, указывают на то, что в ваших Terraform конфигурациях есть проблемы с определением ресурсов:
 
