@@ -45,5 +45,5 @@ https://github.com/jekaabramov/ter-homeworks/blob/main/02/src/locals.tf
 
 ### Задание 6
 
-https://github.com/jekaabramov/ter-homeworks/blob/main/02/src/vms_platform.tf
+https://github.com/jekaabramov/ter-homeworks/blob/main/02/src/vms_platform.tf \
 https://github.com/jekaabramov/ter-homeworks/blob/main/02/src/variables.tf
