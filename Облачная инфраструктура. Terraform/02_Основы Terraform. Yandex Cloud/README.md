@@ -1,4 +1,4 @@
-# 02 "«Основы Terraform. Yandex Cloud»" - Абрамов Е. Э.
+# 02 «Основы Terraform. Yandex Cloud» - Абрамов Е. Э.
 
 https://github.com/jekaabramov/ter-homeworks/tree/main/02/src
 
