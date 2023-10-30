@@ -26,6 +26,8 @@ Terraform has compared your real infrastructure against your configuration and f
 
 ### Задание 3
 
+https://github.com/jekaabramov/ter-homeworks/blob/main/02/src/vms_platform.tf
+
 ### Задание 4
 ```
 abramov@abramov:~/neology/config/netology/Облачная инфраструктура. Terraform/ter-homeworks/02/src$ terraform output
