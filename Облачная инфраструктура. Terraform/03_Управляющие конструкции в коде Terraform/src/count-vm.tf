@@ -8,7 +8,7 @@ resource "yandex_compute_instance" "web" {
   zone         = var.default_zone
   platform_id  = "standard-v1"
   resources {
-    cores  = 1
+    cores  = 2
     memory = 2
   }
 

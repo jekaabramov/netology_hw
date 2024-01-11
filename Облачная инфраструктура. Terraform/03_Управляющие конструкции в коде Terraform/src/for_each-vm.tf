@@ -14,7 +14,7 @@ variable "vm_instances" {
     {
       vm_name   = "main"
       cpu       = 2
-      ram       = 4
+      ram       = 2
       disk      = 50
       public_ip = true
       network_id = "your-network-id"
@@ -22,8 +22,8 @@ variable "vm_instances" {
 
     {
       vm_name   = "replica"
-      cpu       = 4
-      ram       = 8
+      cpu       = 2
+      ram       = 2
       disk      = 100
       public_ip = false
       network_id = "your-network-id"
@@ -46,6 +46,7 @@ resource "yandex_compute_instance" "vm" {
   boot_disk {
     initialize_params {
       size = each.value.disk
+      image_id = var.os_image_id
     }
   }
 
