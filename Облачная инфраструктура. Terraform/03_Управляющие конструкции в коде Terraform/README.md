@@ -35,8 +35,58 @@ variable "each_vm" {
 
 ### Задание 3
 
-1. Создайте 3 одинаковых виртуальных диска размером 1 Гб с помощью ресурса yandex_compute_disk и мета-аргумента count в файле **disk_vm.tf** .
+1. Создайте 3 одинаковых виртуальных диска размером 1 Гб с помощью ресурса yandex_compute_disk и мета-аргумента count в файле [disk_vm.tf](https://github.com/jekaabramov/netology_hw/blob/master/%D0%9E%D0%B1%D0%BB%D0%B0%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D1%80%D0%B0%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0.%20Terraform/03_%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B8%20%D0%B2%20%D0%BA%D0%BE%D0%B4%D0%B5%20Terraform/src/disk_vm.tf) .  
+
+''
+resource "yandex_compute_disk" "storage_disk" {
+  count     = 3
+  name      = "storage-disk-${count.index + 1}"
+  folder_id = var.folder_id
+  size      = 1
+  zone      = var.default_zone
+
+  labels = {
+    environment = "production"
+  }
+}
+''
+
 2. Создайте в том же файле **одиночную**(использовать count или for_each запрещено из-за задания №4) ВМ c именем "storage"  . Используйте блок **dynamic secondary_disk{..}** и мета-аргумент for_each для подключения созданных вами дополнительных дисков.
+
+''
+resource "yandex_compute_instance" "storage_vm" {
+  name         = "storage"
+  folder_id    = var.folder_id
+  zone         = var.default_zone
+  platform_id  = "standard-v1"
+  resources {
+    cores  = 2
+    memory = 4
+  }
+
+  boot_disk {
+    initialize_params {
+      # Укажите желаемые параметры диска
+      image_id = "fd8hksavvldvav594gst"  # Укажите идентификатор желаемого образа ОС
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop.id
+  }
+
+  metadata = {
+    ssh-keys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICwXzj3y2Gi6SuRHhMiTfehzpKcbi2sGMr3Q8H4DO9y7 abramov@abramov"  # Замените на свой открытый ключ SSH
+  }
+
+  dynamic "secondary_disk" {
+    for_each = yandex_compute_disk.storage_disk
+    content {
+      disk_id = secondary_disk.value.id
+    }
+  }
+}
+''
 
 ------
 

@@ -1,5 +1,3 @@
-# for_each-vm.tf
-
 variable "vm_instances" {
   type = list(object({
     vm_name   = string
