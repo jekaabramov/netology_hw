@@ -30,3 +30,10 @@ variable "vpc_name" {
   default     = "develop"
   description = "VPC network&subnet name"
 }
+
+variable "os_image_id" {
+  type        = string
+  description = "ID образа операционной системы"
+  # Укажите желаемый ID образа операционной системы
+  default     = "fd8hksavvldvav594gst"
+}
