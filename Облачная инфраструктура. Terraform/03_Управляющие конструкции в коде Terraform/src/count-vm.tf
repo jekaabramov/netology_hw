@@ -1,5 +1,3 @@
-# count-vm.tf
-
 resource "yandex_compute_instance" "web" {
   count = 2
 
@@ -14,14 +12,15 @@ resource "yandex_compute_instance" "web" {
 
   boot_disk {
     initialize_params {
-      image_id = var.os_image_id
+      image_id = var.os_image_id  # Specify the desired OS image identifier
     }
   }
 
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
-
     security_group_ids = [yandex_vpc_security_group.example.id]
+    nat       = true
+
   }
 
   metadata = {

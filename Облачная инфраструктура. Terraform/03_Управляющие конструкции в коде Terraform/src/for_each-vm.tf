@@ -1,4 +1,4 @@
-variable "vm_instances" {
+variable "each_vm" {
   type = list(object({
     vm_name   = string
     cpu       = number
@@ -21,7 +21,7 @@ variable "vm_instances" {
     {
       vm_name   = "replica"
       cpu       = 2
-      ram       = 2
+      ram       = 4
       disk      = 100
       public_ip = false
       network_id = "your-network-id"
@@ -30,7 +30,7 @@ variable "vm_instances" {
 }
 
 resource "yandex_compute_instance" "vm" {
-  for_each = { for vm in var.vm_instances : vm.vm_name => vm }
+  for_each = { for vm in var.each_vm : vm.vm_name => vm }
 
   name         = each.value.vm_name
   folder_id    = var.folder_id
@@ -50,6 +50,8 @@ resource "yandex_compute_instance" "vm" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
+    nat       = true
+
   }
 
   metadata = {
