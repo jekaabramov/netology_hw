@@ -12,7 +12,7 @@ resource "yandex_compute_instance" "web" {
 
   boot_disk {
     initialize_params {
-      image_id = var.os_image_id  # Specify the desired OS image identifier
+      image_id = var.os_image_id 
     }
   }
 

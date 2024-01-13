@@ -54,7 +54,7 @@ resource "yandex_compute_disk" "storage_disk" {
 2. Создайте в том же файле **одиночную**(использовать count или for_each запрещено из-за задания №4) ВМ c именем "storage"  . Используйте блок **dynamic secondary_disk{..}** и мета-аргумент for_each для подключения созданных вами дополнительных дисков.
 
 ''
-resource "yandex_compute_instance" "storage_vm" {
+resource "yandex_compute_instance" "storage" {
   name         = "storage"
   folder_id    = var.folder_id
   zone         = var.default_zone
@@ -66,17 +66,8 @@ resource "yandex_compute_instance" "storage_vm" {
 
   boot_disk {
     initialize_params {
-      # Укажите желаемые параметры диска
-      image_id = "fd8hksavvldvav594gst"  # Укажите идентификатор желаемого образа ОС
+      image_id = var.os_image_id
     }
-  }
-
-  network_interface {
-    subnet_id = yandex_vpc_subnet.develop.id
-  }
-
-  metadata = {
-    ssh-keys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICwXzj3y2Gi6SuRHhMiTfehzpKcbi2sGMr3Q8H4DO9y7 abramov@abramov"  # Замените на свой открытый ключ SSH
   }
 
   dynamic "secondary_disk" {
@@ -84,6 +75,17 @@ resource "yandex_compute_instance" "storage_vm" {
     content {
       disk_id = secondary_disk.value.id
     }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop.id
+    security_group_ids = [yandex_vpc_security_group.example.id]
+    nat       = true
+
+  }
+
+  metadata = {
+    ssh-keys = "ubuntu:${local.ssh_public_key}"
   }
 }
 ''
@@ -144,6 +146,101 @@ storage ansible_host=<внешний ip-адрес> fqdn=<полное доме�
 ```
 
 Приложите скриншот вывода команды ```terrafrom output```.
+
+''
+Outputs:
+
+vm_list = [
+  {
+    "fqdn" = {
+      "dns_record" = tolist([])
+      "index" = 0
+      "ip_address" = "10.0.1.12"
+      "ipv4" = true
+      "ipv6" = false
+      "ipv6_address" = ""
+      "ipv6_dns_record" = tolist([])
+      "mac_address" = "d0:0d:1b:48:b6:9a"
+      "nat" = true
+      "nat_dns_record" = tolist([])
+      "nat_ip_address" = "84.201.172.19"
+      "nat_ip_version" = "IPV4"
+      "security_group_ids" = toset([
+        "enp3a9kli0t89srp56do",
+      ])
+      "subnet_id" = "e9bhn8rn4jc31sdheanh"
+    }
+    "id" = "fhmr92r9lb6s73i53a2k"
+    "name" = "web-1"
+  },
+  {
+    "fqdn" = {
+      "dns_record" = tolist([])
+      "index" = 0
+      "ip_address" = "10.0.1.18"
+      "ipv4" = true
+      "ipv6" = false
+      "ipv6_address" = ""
+      "ipv6_dns_record" = tolist([])
+      "mac_address" = "d0:0d:7e:fb:89:d1"
+      "nat" = true
+      "nat_dns_record" = tolist([])
+      "nat_ip_address" = "158.160.38.248"
+      "nat_ip_version" = "IPV4"
+      "security_group_ids" = toset([
+        "enp3a9kli0t89srp56do",
+      ])
+      "subnet_id" = "e9bhn8rn4jc31sdheanh"
+    }
+    "id" = "fhm7tus9q5qkrerldglm"
+    "name" = "web-2"
+  },
+  {
+    "fqdn" = {
+      "dns_record" = tolist([])
+      "index" = 0
+      "ip_address" = "10.0.1.26"
+      "ipv4" = true
+      "ipv6" = false
+      "ipv6_address" = ""
+      "ipv6_dns_record" = tolist([])
+      "mac_address" = "d0:0d:14:2a:58:d8"
+      "nat" = true
+      "nat_dns_record" = tolist([])
+      "nat_ip_address" = "51.250.15.216"
+      "nat_ip_version" = "IPV4"
+      "security_group_ids" = toset([
+        "enp3a9kli0t89srp56do",
+      ])
+      "subnet_id" = "e9bhn8rn4jc31sdheanh"
+    }
+    "id" = "fhmk59cdgq0k8bmesdq6"
+    "name" = "main"
+  },
+  {
+    "fqdn" = {
+      "dns_record" = tolist([])
+      "index" = 0
+      "ip_address" = "10.0.1.16"
+      "ipv4" = true
+      "ipv6" = false
+      "ipv6_address" = ""
+      "ipv6_dns_record" = tolist([])
+      "mac_address" = "d0:0d:12:03:c4:38"
+      "nat" = true
+      "nat_dns_record" = tolist([])
+      "nat_ip_address" = "158.160.58.215"
+      "nat_ip_version" = "IPV4"
+      "security_group_ids" = toset([
+        "enp3a9kli0t89srp56do",
+      ])
+      "subnet_id" = "e9bhn8rn4jc31sdheanh"
+    }
+    "id" = "fhmi0f23gn9ag9gim1mf"
+    "name" = "replica"
+  },
+]
+''
 
 ------
 
