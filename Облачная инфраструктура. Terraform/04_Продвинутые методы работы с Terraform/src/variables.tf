@@ -31,27 +31,7 @@ variable "vpc_name" {
   description = "VPC network&subnet name"
 }
 
-###common vars
-
-variable "vms_ssh_root_key" {
-  type        = string
-  default     = "your_ssh_ed25519_key"
-  description = "ssh-keygen -t ed25519"
+variable "ssh_public_key" {
+  type    = string
+  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCRxdcX62gYIsf0t8pLZMLcDnWye6MXEzWoIsYwe6ma6ANRVD5TcY7U2+ijejTEeA+xAP6jg1JtBCGSQH6dMBQ9zrqYRQOTBBvzrB+QV9gUa6spVNZANLerWXmUVzFgXnr1J1F8LgkTdsLP5+uXBf99QJD732qPwcjaqQQmbRPxYCak1bdCOvUMh7S9Qu0XE5GN8wZu3ycuAZnxi4MVxCdQ5qyxcq0wN0v3830zVfeN18JGdumU0ff5kewtjVRUlM5Ro7z06nYHxhLfyraObykXYrqii1w+FebbF06x4T3QYb1Vx4I5JA7yt0JrCUBMfcBcAxQSfxhEwwjv4nuDHw7S6isXObuDkMPPSEo+PwjAb46HC96RsfoTG2UJtK6YPmG2Uuu0eTRAbEyzsyYJmhV+tYV1eV3akf9tTxn/Kd460VMsCnHO6V+oPDlgebsyme6wyU59Cc9AfIFD/13WkKUuGQqo2PvkSnWKaMhJ0v/OSU9InkhE6uekQy9N6G/hujk= abramov@abramov"
 }
-
-###example vm_web var
-variable "vm_web_name" {
-  type        = string
-  default     = "netology-develop-platform-web"
-  description = "example vm_web_ prefix"
-}
-
-###example vm_db var
-variable "vm_db_name" {
-  type        = string
-  default     = "netology-develop-platform-db"
-  description = "example vm_db_ prefix"
-}
-
-
-
