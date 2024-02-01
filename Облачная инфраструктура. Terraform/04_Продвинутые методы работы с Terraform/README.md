@@ -77,7 +77,8 @@ module "vpc_dev" {
 
 ### Задание 3
 1. Выведите список ресурсов в стейте.
-``
+
+```
 abramov@abramov:~/netology/netology_hw/Облачная инфраструктура. Terraform/04_Продвинутые методы работы с Terraform/src$ terraform state list
 data.template_file.cloudinit
 module.test-vm.data.yandex_compute_image.my_image
@@ -85,27 +86,32 @@ module.test-vm.yandex_compute_instance.vm[0]
 module.test-vm.yandex_compute_instance.vm[1]
 module.vpc_dev.yandex_vpc_network.network
 module.vpc_dev.yandex_vpc_subnet.subnet
-``
+```
+
 2. Полностью удалите из стейта модуль vpc.
-``
+
+```
 abramov@abramov:~/netology/netology_hw/Облачная инфраструктура. Terraform/04_Продвинутые методы раб
 оты с Terraform/src$ terraform state rm module.vpc_dev
 Removed module.vpc_dev.yandex_vpc_network.network
 Removed module.vpc_dev.yandex_vpc_subnet.subnet
 Successfully removed 2 resource instance(s).
-``
+```
+
 3. Полностью удалите из стейта модуль vm.
-``
+
+```
 abramov@abramov:~/netology/netology_hw/Облачная инфраструктура. Terraform/04_Продвинутые методы раб
 оты с Terraform/src$ terraform state rm module.test-vm
 Removed module.test-vm.data.yandex_compute_image.my_image
 Removed module.test-vm.yandex_compute_instance.vm[0]
 Removed module.test-vm.yandex_compute_instance.vm[1]
 Successfully removed 3 resource instance(s).
-``
+```
+
 4. Импортируйте всё обратно. 
 
-``
+```
 abramov@abramov:~/netology/netology_hw/Облачная инфраструктура. Terraform/04_Продвинутые методы раб
 оты с Terraform/src$ terraform import module.vpc_dev.yandex_vpc_network.network enp7th0f6f5gfgsjkjh9
 data.template_file.cloudinit: Reading...
@@ -121,9 +127,9 @@ Import successful!
 
 The resources that were imported are shown above. These resources are now in
 your Terraform state and will henceforth be managed by Terraform.
-``
+```
 
-``
+```
 abramov@abramov:~/netology/netology_hw/Облачная инфраструктура. Terraform/04_Продвинутые методы раб
 оты с Terraform/src$ terraform import module.vpc_dev.yandex_vpc_subnet.subnet e9bsfv6jsoktmarpn5p5
 data.template_file.cloudinit: Reading...
@@ -139,9 +145,9 @@ Import successful!
 
 The resources that were imported are shown above. These resources are now in
 your Terraform state and will henceforth be managed by Terraform.
-``
+```
 
-``
+```
 abramov@abramov:~/netology/netology_hw/Облачная инфраструктура. Terraform/04_Продвинутые методы раб
 оты с Terraform/src$ terraform import module.test-vm.yandex_compute_instance.vm[0] fhm1krj6puvutta7lluk
 data.template_file.cloudinit: Reading...
@@ -173,11 +179,11 @@ Import successful!
 
 The resources that were imported are shown above. These resources are now in
 your Terraform state and will henceforth be managed by Terraform.
-``
+```
 
 Проверьте terraform plan. Изменений быть не должно.
 
-``
+```
 abramov@abramov:~/netology/netology_hw/Облачная инфраструктура. Terraform/04_Продвинутые методы раб
 оты с Terraform/src$ terraform plan
 data.template_file.cloudinit: Reading...
@@ -221,7 +227,7 @@ Plan: 0 to add, 2 to change, 0 to destroy.
 
 Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take
 exactly these actions if you run "terraform apply" now.
-``
+```
 
 Приложите список выполненных команд и скриншоты процессы.
 
