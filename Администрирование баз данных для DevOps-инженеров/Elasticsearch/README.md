@@ -41,7 +41,7 @@ EXPOSE 9200
 https://hub.docker.com/r/evgeniyabramov/elasticsearch-8.9
 
 ```bash
-root@node1:~/elasticsearch# curl http://localhost:9200/
+# curl http://localhost:9200/
 {
   "name" : "netology_test",
   "cluster_name" : "my_cluster",
