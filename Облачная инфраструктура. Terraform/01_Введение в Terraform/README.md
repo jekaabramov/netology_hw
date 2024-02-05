@@ -68,13 +68,13 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED              STAT
 - 4. **Откат сложен:** Если что-то пойдет не так или если изменения вызовут проблемы, откат (возврат к предыдущему состоянию) может быть сложным и требовать дополнительных действий.
 
 Использование `-auto-approve` может быть полезным в некоторых ситуациях, например, в автоматизированных сценариях или в ходе непрерывной интеграции и непрерывной поставки (CI/CD), но следует осторожно использовать его и убедиться, что вы понимаете последствия его использования в вашей конкретной среде. Важно регулярно резервировать данные и иметь механизмы восстановления для минимизации рисков.
-```
+```bash
 root@node1:/home/vagrant/ter-homeworks/01/src# docker ps
 CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                  NAMES
 acec162ab7ff   bc649bab30d1   "/docker-entrypoint.…"   20 seconds ago   Up 18 seconds   0.0.0.0:8000->80/tcp   example_cXoS0gVjNHRPp0Ir
 ```
 7. 
-```hcl
+```bash
 root@node1:/home/vagrant/ter-homeworks/01/src# cat terraform.tfstate
 {
   "version": 4,
