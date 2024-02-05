@@ -1,7 +1,8 @@
 # MySQL - Абрамов Евгений
 
-### Задание 1
-```
+## Задание 1
+
+```bash
 mysql> status
 
 mysql  Ver 8.1.0 for Linux on x86_64 (MySQL Community Server - GPL)
@@ -25,8 +26,7 @@ Binary data as:         Hexadecimal
 Uptime:                 42 min 13 sec
 
 Threads: 2  Questions: 132  Slow queries: 0  Opens: 192  Flush tables: 3  Open tables: 110  Queries per second avg: 0.052
-```
-```
+
 mysql> SELECT COUNT(*) FROM orders WHERE price > 300;
 +----------+
 | COUNT(*) |
@@ -35,8 +35,10 @@ mysql> SELECT COUNT(*) FROM orders WHERE price > 300;
 +----------+
 1 row in set (0.01 sec)
 ```
-### Задание 2
-```
+
+## Задание 2
+
+```bash
 mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test' AND HOST = 'localhost';
 +------+-----------+------------------------------------------------+
 | USER | HOST      | ATTRIBUTE                                      |
@@ -45,8 +47,10 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test' AND 
 +------+-----------+------------------------------------------------+
 1 row in set (0.00 sec)
 ```
-### Задание 3
-```
+
+## Задание 3
+
+```bash
 mysql> SHOW TABLE STATUS\G
 
          Name: orders  
@@ -69,7 +73,8 @@ Max_data_length: 0
         Comment:
 1 row in set (0.01 sec)
 ```
-```
+
+```bash  
 SET profiling = 1;
 ALTER TABLE test_db.orders ENGINE = MyISAM;
 ALTER TABLE test_db.orders ENGINE = InnoDB;
@@ -84,8 +89,10 @@ mysql> SHOW PROFILES;
 +----------+------------+--------------------------------------------+
 4 rows in set, 1 warning (0.00 sec)
 ```
-### Задание 4
-```
+
+## Задание 4
+
+```bash
 innodb_buffer_pool_size = 70%   
 innodb_io_capacity = 10000      
 innodb_compression_algorithm = zlib

@@ -1,8 +1,8 @@
 # Elasticsearch - Абрамов Евгений
 
-### Задание 1
+## Задание 1
 
-#### Dockerfile
+- Dockerfile
 
 ```docker
 # Используем базовый образ CentOS 7
@@ -36,9 +36,7 @@ USER elastic
 EXPOSE 9200
 ```
 
-#### Docker Hub
-
-https://hub.docker.com/r/evgeniyabramov/elasticsearch-8.9
+- [Docker Hub](https://hub.docker.com/r/evgeniyabramov/elasticsearch-8.9)
 
 ```bash
 # curl http://localhost:9200/
@@ -61,9 +59,9 @@ https://hub.docker.com/r/evgeniyabramov/elasticsearch-8.9
 }
 ```
 
-### Задание 2
+## Задание 2
 
-#### Добавьте в elasticsearch 3 индекса:
+- Добавьте в elasticsearch 3 индекса
 
 ```bash
 curl -X PUT "localhost:9200/ind-1" -H "Content-Type: application/json" -d '{
@@ -88,7 +86,7 @@ curl -X PUT "localhost:9200/ind-3" -H "Content-Type: application/json" -d '{
 }'
 ```
 
-#### Получите список индексов и их статусов:
+- Получите список индексов и их статусов
 
 ```bash
 # curl -X GET "localhost:9200/_cat/indices?v"
@@ -98,7 +96,7 @@ yellow open   ind-3 ZmoVM5PURju2OLqwsJt_LA   4   2          0            0      
 yellow open   ind-2 sjjCduTVTY-GC_PgJTeREA   2   1          0            0       450b           450b
 ```
 
-#### Получите состояние кластера Elasticsearch, используя API.
+- Получите состояние кластера Elasticsearch, используя API
 
 ```bash
 # curl -X GET -u undefined:$ESPASS "localhost:9200/_cluster/health?pretty"
@@ -121,11 +119,11 @@ yellow open   ind-2 sjjCduTVTY-GC_PgJTeREA   2   1          0            0      
 }
 ```
 
-#### Как вы думаете, почему часть индексов и кластер находятся в состоянии yellow?
+- Как вы думаете, почему часть индексов и кластер находятся в состоянии yellow?
 
 Часть индексов и кластер находятся в состоянии "yellow", потому что Elasticsearch требует, чтобы хотя бы один реплицированный шард для каждого индекса был доступен для обеспечения высокой доступности данных.
 
-#### Удалите все индексы
+- Удалите все индексы
 
 ```bash
 # curl -X GET "localhost:9200/_cat/indices" | awk '{print $3}' | xargs -I {} curl -X DELETE "localhost:9200/{}"
@@ -137,9 +135,9 @@ yellow open   ind-2 sjjCduTVTY-GC_PgJTeREA   2   1          0            0      
 {"acknowledged":true}
 ```
 
-### Задание 3
+## Задание 3
 
-#### Используя API, зарегистрируйте эту директорию как snapshot repository c именем netology_backup.
+- Используя API, зарегистрируйте эту директорию как snapshot repository c именем netology_backup
 
 ```bash
 # curl -X PUT -u undefined:$ESPASS "localhost:9200/_snapshot/netology_backup?pretty" -H 'Content-Type: application/json' -d'
@@ -154,7 +152,7 @@ yellow open   ind-2 sjjCduTVTY-GC_PgJTeREA   2   1          0            0      
 }
 ```
 
-#### Создайте индекс test с 0 реплик и 1 шардом и приведите в ответе список индексов.
+- Создайте индекс test с 0 реплик и 1 шардом и приведите в ответе список индексов
 
 ```bash
 # curl -X GET "localhost:9200/_cat/indices?v"
@@ -162,7 +160,7 @@ health status index uuid                   pri rep docs.count docs.deleted store
 green  open   test  ZVDipuCkTCCcTcYcd3OIyg   1   0          0            0       225b           225b
 ```
 
-#### Создайте snapshot состояния кластера Elasticsearch.
+- Создайте snapshot состояния кластера Elasticsearch
 
 ```bash
 bash-4.2$ cd snapshots/
@@ -177,7 +175,7 @@ drwxr-xr-x 3 elastic elastic  4096 Sep  4 07:53 indices
 -rw-r--r-- 1 elastic elastic   303 Sep  4 07:53 snap-qGlwyKJ4Q7GwUIAy3Qp2FA.dat
 ```
 
-#### Удалите индекс test и создайте индекс test-2.
+- Удалите индекс test и создайте индекс test-2
 
 ```bash
 # curl -X GET "localhost:9200/_cat/indices?v"
@@ -185,7 +183,7 @@ health status index  uuid                   pri rep docs.count docs.deleted stor
 green  open   test-2 FtxgM99XT8C9zWeY6-TX2Q   1   0          0            0       225b           225b
 ```
 
-#### Восстановите состояние кластера Elasticsearch из snapshot, созданного ранее.
+- Восстановите состояние кластера Elasticsearch из snapshot, созданного ранее
 
 ```bash
 # curl -X POST "localhost:9200/_snapshot/netology_backup/my_snapshot/_restore" -H 'Content-Type: application/json' -d'
