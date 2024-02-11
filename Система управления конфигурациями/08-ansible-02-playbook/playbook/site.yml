@@ -1,36 +1,71 @@
 ---
-- name: Install Clickhouse
-  hosts: clickhouse
+- name: Install ClickHouse and Vector
+  hosts:
+    - clickhouse
+    - vector_server
+  become: true
   handlers:
-    - name: Start clickhouse service
-      become: true
+    - name: Restart clickhouse service
       ansible.builtin.service:
         name: clickhouse-server
         state: restarted
+
+    - name: Restart vector service
+      ansible.builtin.systemd:
+        name: vector
+        state: restarted
+
   tasks:
-    - block:
-        - name: Get clickhouse distrib
+    - name: Install ClickHouse
+      block:
+        - name: Get ClickHouse distribution
           ansible.builtin.get_url:
             url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm"
             dest: "./{{ item }}-{{ clickhouse_version }}.rpm"
           with_items: "{{ clickhouse_packages }}"
+        
+        - name: Install ClickHouse packages
+          ansible.builtin.yum:
+            name: "./{{ item }}-{{ clickhouse_version }}.rpm"
+          with_items: "{{ clickhouse_packages }}"
       rescue:
-        - name: Get clickhouse distrib
+        - name: Get ClickHouse distribution
           ansible.builtin.get_url:
             url: "https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm"
             dest: "./clickhouse-common-static-{{ clickhouse_version }}.rpm"
-    - name: Install clickhouse packages
-      become: true
-      ansible.builtin.yum:
-        name:
-          - clickhouse-common-static-{{ clickhouse_version }}.rpm
-          - clickhouse-client-{{ clickhouse_version }}.rpm
-          - clickhouse-server-{{ clickhouse_version }}.rpm
-      notify: Start clickhouse service
+        
+        - name: Install ClickHouse packages
+          ansible.builtin.yum:
+            name: "./clickhouse-common-static-{{ clickhouse_version }}.rpm"
     - name: Flush handlers
       meta: flush_handlers
-    - name: Create database
+    - name: Create ClickHouse database
       ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
       register: create_db
-      failed_when: create_db.rc != 0 and create_db.rc !=82
-      changed_when: create_db.rc == 0
+      failed_when: create_db.rc != 0 and create_db.rc != 82
+      changed_when: create_db.rc == 0 
+
+   
+    - name: Download Vector distribution
+      ansible.builtin.get_url:
+        url: "https://example.com/path/to/vector-{{ vector_version }}.tar.gz"
+        dest: "/tmp/vector-{{ vector_version }}.tar.gz"
+
+    - name: Unarchive Vector distribution
+      ansible.builtin.unarchive:
+        src: "/tmp/vector-{{ vector_version }}.tar.gz"
+        dest: "/opt/vector"
+        remote_src: yes
+
+    - name: Copy Vector config template
+      ansible.builtin.template:
+        src: "vector_config.j2"
+        dest: "/opt/vector/config/vector.toml"
+        mode: 0644
+      notify: Restart vector service
+
+  handlers:
+    - name: Restart vector service
+      ansible.builtin.systemd:
+        name: vector
+        state: restarted
