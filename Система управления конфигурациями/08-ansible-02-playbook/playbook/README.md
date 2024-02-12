@@ -37,4 +37,4 @@
 3. Запустите плейбук:
 
 ```bash
-ansible-playbook -i your_inventory_file.yml your_playbook_file.yml
+ansible-playbook -i your_inventory_file.yml site.yml
